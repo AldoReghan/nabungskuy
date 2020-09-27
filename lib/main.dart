@@ -50,14 +50,16 @@ class _HomeState extends State<Home> {
                       Padding(
                           padding: EdgeInsets.all(16),
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
                                 child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       'Total uang keseluruhan : ',
-                                      style: TextStyle(color: Colors.white),
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
                                     ),
                                     SizedBox(
                                       height: 10,
@@ -72,21 +74,6 @@ class _HomeState extends State<Home> {
                                   ],
                                 ),
                               ),
-                              Spacer(),
-                              Container(
-                                  padding: EdgeInsets.all(16),
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(50)),
-                                  height: 50,
-                                  child: Center(
-                                    child: Text(
-                                      "Tambah",
-                                      style: TextStyle(
-                                          color: Colors.blue,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ))
                             ],
                           ))
                     ],
@@ -110,19 +97,25 @@ class _HomeState extends State<Home> {
                             children: [
                               Row(
                                 children: [
-                                  Icon(Icons.arrow_downward, color: Colors.green,),
-                                  Text('Pemasukan', style: TextStyle(
-                                      color: Colors.green,
-                                      fontWeight: FontWeight.bold
-                                  ),),
+                                  Icon(
+                                    Icons.arrow_downward,
+                                    color: Colors.green,
+                                  ),
+                                  Text(
+                                    'Pemasukan',
+                                    style: TextStyle(
+                                        color: Colors.green,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ],
                               ),
                               SizedBox(
                                 height: 5,
                               ),
-                              Text('Rp. 10.000.000', style: TextStyle(
-                                fontWeight: FontWeight.bold
-                              ),)
+                              Text(
+                                'Rp. 10.000.000',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              )
                             ],
                           ),
                         ),
@@ -133,19 +126,27 @@ class _HomeState extends State<Home> {
                             children: [
                               Row(
                                 children: [
-                                  Icon(Icons.arrow_upward, color: Colors.red,),
-                                  Text('Pengeluaran', style: TextStyle(
-                                      color: Colors.red,
-                                      fontWeight: FontWeight.bold
-                                  ),),
+                                  Icon(
+                                    Icons.arrow_upward,
+                                    color: Colors.red,
+                                  ),
+                                  Text(
+                                    'Pengeluaran',
+                                    style: TextStyle(
+                                        color: Colors.red,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ],
                               ),
                               SizedBox(
                                 height: 5,
                               ),
-                              Text('Rp. 11.000.000',style: TextStyle(
-                                  fontWeight: FontWeight.bold
-                              ),)
+                              Text(
+                                'Rp. 11.000.000',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )
                             ],
                           ),
                         )
@@ -183,11 +184,103 @@ class _HomeState extends State<Home> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left:16.0, right: 16.0),
+              padding: const EdgeInsets.only(left: 16.0, right: 16.0),
               child: Container(
                 height: 430,
-                color: Colors.red,
-                child: ListView(),
+                child: ListView(
+                  children: [
+                    GestureDetector(
+                      onTap: () => print("object"),
+                      child: Container(
+                        margin: EdgeInsets.only(top: 10),
+                        child: Row(
+                          children: [
+                            Container(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Uang kuliah",
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(height: 5),
+                                  Text("pendidikan"),
+                                  SizedBox(height: 5),
+                                  Text(
+                                    "uang kuliah bulan oktober",
+                                    textAlign: TextAlign.left,
+                                  )
+                                ],
+                              ),
+                            ),
+                            Spacer(),
+                            Text(
+                              "Rp.5.600.0000",
+                              style: TextStyle(
+                                  color: Colors.blue,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Divider(
+                        color: Colors.black,
+                        height: 1,
+                        thickness: 0.5,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () => print("object"),
+                      child: Container(
+                        margin: EdgeInsets.only(top: 10),
+                        child: Row(
+                          children: [
+                            Container(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Uang makan",
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(height: 5),
+                                  Text("exp nyawa"),
+                                  SizedBox(height: 5),
+                                  Text(
+                                    "gawe mangan kampret",
+                                    textAlign: TextAlign.left,
+                                  )
+                                ],
+                              ),
+                            ),
+                            Spacer(),
+                            Text(
+                              "Rp.2.600.0000",
+                              style: TextStyle(
+                                  color: Colors.blue,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Divider(
+                        color: Colors.black,
+                        height: 1,
+                        thickness: 0.5,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             )
           ],
