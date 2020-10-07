@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:date_picker_timeline/date_picker_timeline.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -15,6 +16,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  DatePickerController _controller = DatePickerController();
+  DateTime _selectedValue = DateTime.now();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,6 +27,12 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         elevation: 0.0,
         title: Text('Welcome Aldo'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.replay),
+        onPressed: () {
+          _controller.animateToSelection();
+        },
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -153,7 +163,8 @@ class _HomePageState extends State<HomePage> {
               height: 10,
             ),
             Padding(
-              padding: const EdgeInsets.all(18.0),
+              padding:
+                  const EdgeInsets.only(top: 18.0, left: 18.0, right: 18.0),
               child: Container(
                 child: Row(
                   children: [
@@ -173,6 +184,31 @@ class _HomePageState extends State<HomePage> {
                           fontSize: 16),
                     )
                   ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10.0, bottom: 8),
+              child: Container(
+                child: DatePicker(
+                  DateTime.now(),
+                  width: 60,
+                  height: 80,
+                  controller: _controller,
+                  initialSelectedDate: DateTime.now(),
+                  selectionColor: Colors.black,
+                  selectedTextColor: Colors.white,
+                  inactiveDates: [
+                    DateTime.now().add(Duration(days: 3)),
+                    DateTime.now().add(Duration(days: 4)),
+                    DateTime.now().add(Duration(days: 7))
+                  ],
+                  onDateChange: (date) {
+                    // New date selected
+                    setState(() {
+                      _selectedValue = date;
+                    });
+                  },
                 ),
               ),
             ),
