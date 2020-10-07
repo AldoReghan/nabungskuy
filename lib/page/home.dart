@@ -187,6 +187,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
+            Text(_selectedValue.toString()),
             Padding(
               padding: const EdgeInsets.only(top: 10.0, bottom: 8),
               child: Container(
@@ -199,9 +200,10 @@ class _HomePageState extends State<HomePage> {
                   selectionColor: Colors.black,
                   selectedTextColor: Colors.white,
                   inactiveDates: [
-                    DateTime.now().add(Duration(days: 3)),
-                    DateTime.now().add(Duration(days: 4)),
-                    DateTime.now().add(Duration(days: 7))
+                    DateTime.now().add(Duration(days: -1))
+                    // DateTime.now().add(Duration(days: 3)),
+                    // DateTime.now().add(Duration(days: 4)),
+                    // DateTime.now().add(Duration(days: 7))
                   ],
                   onDateChange: (date) {
                     // New date selected
