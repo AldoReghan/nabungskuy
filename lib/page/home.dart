@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
+import 'package:intl/intl.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -18,6 +19,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   DatePickerController _controller = DatePickerController();
   DateTime _selectedValue = DateTime.now();
+
+  var myFormat = DateFormat('yyyy-MM-dd');
 
   @override
   Widget build(BuildContext context) {
@@ -187,7 +190,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            Text(_selectedValue.toString()),
+            Text('${myFormat.format(_selectedValue)}'),
             Padding(
               padding: const EdgeInsets.only(top: 10.0, bottom: 8),
               child: Container(
