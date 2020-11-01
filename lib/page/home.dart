@@ -26,7 +26,19 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      drawer: Drawer(),
+      drawer: Drawer(
+        child: Column(
+          children: [
+            Container(
+              color: Colors.red,
+              width: MediaQuery.of(context).size.width,
+              child: DrawerHeader(
+                child: Icon(Icons.home),
+              ),
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
         elevation: 0.0,
         title: Text('Welcome Aldo'),
@@ -65,7 +77,7 @@ class _HomePageState extends State<HomePage> {
                                       height: 10,
                                     ),
                                     Text(
-                                      'Rp. 50.000.000',
+                                      'Rp. 5.000.000',
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
@@ -314,20 +326,20 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0, // this will be set when a new tab is tapped
-        items: [
-          BottomNavigationBarItem(
-            icon: new Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: new Icon(Icons.mail),
-            label: 'Messages',
-          ),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile')
-        ],
-      ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   currentIndex: 0, // this will be set when a new tab is tapped
+      //   items: [
+      //     BottomNavigationBarItem(
+      //       icon: new Icon(Icons.home),
+      //       label: 'Home',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: new Icon(Icons.mail),
+      //       label: 'Messages',
+      //     ),
+      //     BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile')
+      //   ],
+      // ),
       // floatingActionButton: FloatingActionButton(
       //   child: Icon(Icons.replay),
       //   onPressed: () {
