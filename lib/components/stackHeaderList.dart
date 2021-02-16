@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nabungskuy/components/cardItem.dart';
 
-Widget stackHeaderList(BuildContext context) {
+Widget stackHeaderList(BuildContext context, int nominals) {
+  String nominal = nominals.toString();
   return Stack(
     children: [
       Container(
@@ -33,7 +34,7 @@ Widget stackHeaderList(BuildContext context) {
                             height: 10,
                           ),
                           Text(
-                            'Rp. 5.000.000',
+                            'Rp. '+nominal,
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -47,7 +48,7 @@ Widget stackHeaderList(BuildContext context) {
           ],
         ),
       ),
-      cardInOut()
+      cardInOut(500000,60000)
     ],
   );
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-Widget cardList() {
+Widget cardList(String namaTabungan, String kategori, String deskripsi, int nominals) {
+  String nominal = nominals.toString();
   return GestureDetector(
     onTap: () => print("object"),
     child: Container(
@@ -12,14 +13,14 @@ Widget cardList() {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Uang kuliah",
+                  namaTabungan,
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 5),
-                Text("pendidikan"),
+                Text(kategori),
                 SizedBox(height: 5),
                 Text(
-                  "uang kuliah bulan oktober",
+                  deskripsi,
                   textAlign: TextAlign.left,
                 ),
               ],
@@ -27,7 +28,7 @@ Widget cardList() {
           ),
           Spacer(),
           Text(
-            "Rp.5.600.0000",
+            "Rp."+nominal,
             style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
           ),
         ],

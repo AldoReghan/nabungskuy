@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget cardInOut() {
+Widget cardInOut(int nominaPemasukan,int nominalKeluaran) {
   return Padding(
     padding: EdgeInsets.only(left: 30, right: 30, top: 10),
     child: Container(
@@ -34,7 +34,7 @@ Widget cardInOut() {
                   height: 5,
                 ),
                 Text(
-                  'Rp. 10.000.000',
+                  "Rp. "+nominaPemasukan.toString(),
                   style: TextStyle(fontWeight: FontWeight.bold),
                 )
               ],
@@ -62,7 +62,7 @@ Widget cardInOut() {
                   height: 5,
                 ),
                 Text(
-                  'Rp. 11.000.000',
+                  'Rp. '+nominalKeluaran.toString(),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                   ),

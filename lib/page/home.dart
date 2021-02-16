@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            stackHeaderList(context),
+            stackHeaderList(context, 5000000),
             SizedBox(
               height: 10,
             ),
@@ -96,7 +96,7 @@ class _HomePageState extends State<HomePage> {
                 height: 300,
                 child: ListView(
                   children: [
-                    cardList(),
+                    cardList('Uang Kuliah','Pendidikan','uang ukt semester 5',5000000),
                     SizedBox(
                       height: 10,
                     ),
@@ -105,7 +105,7 @@ class _HomePageState extends State<HomePage> {
                       height: 1,
                       thickness: 0.5,
                     ),
-                    cardList()
+                    cardList('Uang Makan','Kebutuhan','uang makan bulanan',30000)
                   ],
                 ),
               ),
