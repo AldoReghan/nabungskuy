@@ -5,7 +5,7 @@ Widget drawer(BuildContext context) {
     child: Column(
       children: [
         Container(
-          color: Colors.red,
+          color: Colors.blue,
           width: MediaQuery.of(context).size.width,
           child: DrawerHeader(
             child: Icon(Icons.home),

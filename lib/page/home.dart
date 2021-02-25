@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:intl/intl.dart';
-import 'package:nabungskuy/components/cardList.dart';
+import 'package:nabungskuy/components/cardItems.dart';
+// import 'package:nabungskuy/components/cardList.dart';
 import 'package:nabungskuy/components/drawer.dart';
 import 'package:nabungskuy/components/stackHeaderList.dart';
+import 'package:nabungskuy/page/show_all.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -55,20 +57,26 @@ class _HomePageState extends State<HomePage> {
                           fontSize: 20),
                     ),
                     Spacer(),
-                    Text(
-                      "Show All",
-                      style: TextStyle(
-                          color: Colors.blue,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => ShowAll()));
+                      },
+                      child: Text(
+                        "Show All",
+                        style: TextStyle(
+                            color: Colors.blue,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
+                      ),
                     )
                   ],
                 ),
               ),
             ),
-            Text('${myFormat.format(_selectedValue)}'),
+            // Text('${myFormat.format(_selectedValue)}'),
             Padding(
-              padding: const EdgeInsets.only(top: 10.0, bottom: 8),
+              padding: const EdgeInsets.only(left: 8, top: 10.0, bottom: 8),
               child: Container(
                 child: DatePicker(
                   DateTime.now(),
@@ -78,9 +86,7 @@ class _HomePageState extends State<HomePage> {
                   initialSelectedDate: DateTime.now(),
                   selectionColor: Colors.blue,
                   selectedTextColor: Colors.white,
-                  inactiveDates: [
-                    DateTime.now().add(Duration(days: -1))
-                  ],
+                  inactiveDates: [DateTime.now().add(Duration(days: -1))],
                   onDateChange: (date) {
                     // New date selected
                     setState(() {
@@ -91,21 +97,20 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
               child: Container(
-                height: 300,
+                height: MediaQuery.of(context).size.height / 2,
                 child: ListView(
                   children: [
-                    cardList('Uang Kuliah','Pendidikan','uang ukt semester 5',5000000),
-                    SizedBox(
-                      height: 10,
+                    GestureDetector(
+                      onTap: () => {print('yuhuu')},
+                      child: cardItems(context, 'Uang Pendidikan',
+                          'Uang kuliah bulan februari', 5000000, Colors.red),
                     ),
-                    Divider(
-                      color: Colors.black,
-                      height: 1,
-                      thickness: 0.5,
-                    ),
-                    cardList('Uang Makan','Kebutuhan','uang makan bulanan',30000)
+                    cardItems(context, 'Uang Tabungan',
+                        'Uang tabungan atau darurat', 5000000, Colors.blue),
+                    cardItems(context, 'Uang Harian',
+                        'Uang buat ngopi dan kebutuhan pokok lainnya', 5000000, Colors.orange),
                   ],
                 ),
               ),
