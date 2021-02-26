@@ -70,46 +70,37 @@ class _FancyFabState extends State<FancyFab>
     isOpened = !isOpened;
   }
 
-  Widget add() {
+  Widget tabungan() {
     return Container(
-      child: FloatingActionButton(
-        onPressed: null,
-        tooltip: 'Add',
-        child: Icon(Icons.add),
+      child: FloatingActionButton.extended(
+        onPressed: () {},
+        icon: Icon(Icons.book),
+        label: Text("Tabungan"),
       ),
     );
   }
 
-  Widget image() {
+  Widget kategori() {
     return Container(
-      child: FloatingActionButton(
-        onPressed: null,
-        tooltip: 'Image',
-        child: Icon(Icons.image),
-      ),
-    );
-  }
-
-  Widget inbox() {
-    return Container(
-      child: FloatingActionButton(
-        onPressed: null,
-        tooltip: 'Inbox',
-        child: Icon(Icons.inbox),
+      child: FloatingActionButton.extended(
+        onPressed: () {},
+        icon: Icon(Icons.category),
+        label: Text("Kategori"),
       ),
     );
   }
 
   Widget toggle() {
     return Container(
-      child: FloatingActionButton(
+      child: FloatingActionButton.extended(
         backgroundColor: _buttonColor.value,
         onPressed: animate,
         tooltip: 'Toggle',
-        child: AnimatedIcon(
+        icon: AnimatedIcon(
           icon: AnimatedIcons.menu_close,
           progress: _animateIcon,
         ),
+        label: Text('Menu'),
       ),
     );
   }
@@ -125,7 +116,7 @@ class _FancyFabState extends State<FancyFab>
             _translateButton.value * 3.0,
             0.0,
           ),
-          child: add(),
+          child: kategori(),
         ),
         Transform(
           transform: Matrix4.translationValues(
@@ -133,15 +124,7 @@ class _FancyFabState extends State<FancyFab>
             _translateButton.value * 2.0,
             0.0,
           ),
-          child: image(),
-        ),
-        Transform(
-          transform: Matrix4.translationValues(
-            0.0,
-            _translateButton.value,
-            0.0,
-          ),
-          child: inbox(),
+          child: tabungan(),
         ),
         toggle(),
       ],
