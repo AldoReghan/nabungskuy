@@ -1,11 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:intl/intl.dart';
+import 'package:nabungskuy/components/FabMenu.dart';
 import 'package:nabungskuy/components/cardItems.dart';
-// import 'package:nabungskuy/components/cardList.dart';
-import 'package:nabungskuy/components/drawer.dart';
 import 'package:nabungskuy/components/stackHeaderList.dart';
 import 'package:nabungskuy/page/show_all.dart';
+import 'package:horizontal_center_date_picker/datepicker_controller.dart';
+import 'package:horizontal_center_date_picker/horizontal_date_picker.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -21,17 +22,17 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  DatePickerController _controller = DatePickerController();
-  DateTime _selectedValue = DateTime.now();
-
-  var myFormat = DateFormat('yyyy-MM-dd');
-
+class _HomePageState extends State<HomePage>{
   @override
   Widget build(BuildContext context) {
+
+    var now = DateTime.now();
+    var myFormat = DateFormat('yyyy-MM-dd');
+    DateTime startDate = now.subtract(Duration(days: 60));
+    DateTime endDate = now;
+
     return Scaffold(
       backgroundColor: Colors.white,
-      drawer: drawer(context),
       appBar: AppBar(
         elevation: 0.0,
         title: Text('Welcome Aldo'),
@@ -78,20 +79,16 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.only(left: 8, top: 10.0, bottom: 8),
               child: Container(
-                child: DatePicker(
-                  DateTime.now(),
-                  width: 60,
-                  height: 80,
-                  controller: _controller,
-                  initialSelectedDate: DateTime.now(),
-                  selectionColor: Colors.blue,
-                  selectedTextColor: Colors.white,
-                  inactiveDates: [DateTime.now().add(Duration(days: -1))],
-                  onDateChange: (date) {
-                    // New date selected
-                    setState(() {
-                      _selectedValue = date;
-                    });
+                child: HorizontalDatePickerWidget(
+                  startDate: startDate,
+                  endDate: endDate,
+                  selectedDate: now,
+                  selectedColor: Colors.blue,
+                  normalTextColor: Colors.black,
+                  widgetWidth: MediaQuery.of(context).size.width,
+                  datePickerController: DatePickerController(),
+                  onValueSelected: (date) {
+                    print('selected = ${myFormat.format(date)}');
                   },
                 ),
               ),
@@ -102,15 +99,24 @@ class _HomePageState extends State<HomePage> {
                 height: MediaQuery.of(context).size.height / 2,
                 child: ListView(
                   children: [
-                    GestureDetector(
-                      onTap: () => {print('yuhuu')},
-                      child: cardItems(context, 'Uang Pendidikan',
-                          'Uang kuliah bulan februari', 5000000, Colors.red),
+                    CardItems(
+                      judul: 'uang Pendidikan',
+                      deskripsi: 'Uang kuliah bulan februari',
+                      nominal: 50000,
+                      colors: Colors.red,
                     ),
-                    cardItems(context, 'Uang Tabungan',
-                        'Uang tabungan atau darurat', 5000000, Colors.blue),
-                    cardItems(context, 'Uang Harian',
-                        'Uang buat ngopi dan kebutuhan pokok lainnya', 5000000, Colors.orange),
+                    CardItems(
+                      judul: 'uang Pendidikan',
+                      deskripsi: 'Uang kuliah bulan februari',
+                      nominal: 50000,
+                      colors: Colors.blue,
+                    ),
+                    CardItems(
+                      judul: 'uang Pendidikan',
+                      deskripsi: 'Uang kuliah bulan februari',
+                      nominal: 50000,
+                      colors: Colors.orange,
+                    )
                   ],
                 ),
               ),
@@ -118,12 +124,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          _controller.animateToSelection();
-        },
-      ),
+      floatingActionButton: FancyFab()
     );
   }
 }

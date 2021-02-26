@@ -48,7 +48,7 @@ Widget stackHeaderList(BuildContext context, int nominals) {
           ],
         ),
       ),
-      cardInOut(500000,60000)
+      CardInOut(nominalPemasukan: 100000, nominalKeluaran: 25000000,)
     ],
   );
 }

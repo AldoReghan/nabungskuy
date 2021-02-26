@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 
-Widget cardInOut(int nominaPemasukan,int nominalKeluaran) {
-  return Padding(
+class CardInOut extends StatelessWidget {
+
+  final int nominalPemasukan;
+  final int nominalKeluaran;
+
+  const CardInOut({Key key, this.nominalPemasukan, this.nominalKeluaran}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
     padding: EdgeInsets.only(left: 30, right: 30, top: 10),
     child: Container(
       alignment: Alignment.center,
@@ -34,7 +42,7 @@ Widget cardInOut(int nominaPemasukan,int nominalKeluaran) {
                   height: 5,
                 ),
                 Text(
-                  "Rp. "+nominaPemasukan.toString(),
+                  "Rp. "+nominalPemasukan.toString(),
                   style: TextStyle(fontWeight: FontWeight.bold),
                 )
               ],
@@ -74,4 +82,6 @@ Widget cardInOut(int nominaPemasukan,int nominalKeluaran) {
       ),
     ),
   );
+
+  }
 }

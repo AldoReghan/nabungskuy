@@ -1,17 +1,27 @@
 import 'package:flutter/material.dart';
 
-Widget drawer(BuildContext context) {
-  return Drawer(
+class CustomDrawer extends StatelessWidget {
+  final headerIcon;
+  final headercolor;
+
+  const CustomDrawer({Key key, this.headerIcon, this.headercolor}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
     child: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Container(
-          color: Colors.blue,
+          color: headercolor,
           width: MediaQuery.of(context).size.width,
           child: DrawerHeader(
-            child: Icon(Icons.home),
+            child: Icon(headerIcon),
           ),
+          
         ),
       ],
     ),
   );
+  }
 }
