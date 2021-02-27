@@ -73,8 +73,12 @@ class _FancyFabState extends State<FancyFab>
   Widget tabungan() {
     return Container(
       child: FloatingActionButton.extended(
-        onPressed: () {},
+        heroTag: null,
+        onPressed: () {
+          Navigator.pushNamed(context, '/tabunganlist');
+        },
         icon: Icon(Icons.book),
+        tooltip: 'Tabungan',
         label: Text("Tabungan"),
       ),
     );
@@ -83,8 +87,12 @@ class _FancyFabState extends State<FancyFab>
   Widget kategori() {
     return Container(
       child: FloatingActionButton.extended(
-        onPressed: () {},
+        heroTag: null,
+        onPressed: () {
+          Navigator.pushNamed(context,'/kategorilist');
+        },
         icon: Icon(Icons.category),
+        tooltip: 'Kategori',
         label: Text("Kategori"),
       ),
     );
@@ -94,6 +102,7 @@ class _FancyFabState extends State<FancyFab>
     return Container(
       child: FloatingActionButton.extended(
         backgroundColor: _buttonColor.value,
+        heroTag: null,
         onPressed: animate,
         tooltip: 'Toggle',
         icon: AnimatedIcon(

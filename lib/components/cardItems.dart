@@ -22,7 +22,7 @@ class CardItems extends StatelessWidget {
           children: [
             Container(
               width: MediaQuery.of(context).size.width / 2,
-              height: 50,
+              height: deskripsi == null || nominal == null ? 20 : 50,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -32,7 +32,7 @@ class CardItems extends StatelessWidget {
                     style: TextStyle(
                         color: Colors.white, fontWeight: FontWeight.bold),
                   )),
-                  Expanded(
+                  deskripsi == null || nominal == null ? Container() : Expanded(
                       child: Text(
                     deskripsi,
                     overflow: TextOverflow.ellipsis,
@@ -43,7 +43,7 @@ class CardItems extends StatelessWidget {
               ),
             ),
             Spacer(),
-            Text('Rp. ' + nominal.toString(),
+            deskripsi == null || nominal == null ? Container() : Text('Rp. ' + nominal.toString(),
                 style:
                     TextStyle(color: Colors.white, fontWeight: FontWeight.bold))
           ],

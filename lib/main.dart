@@ -3,6 +3,9 @@ import 'package:flutter/widgets.dart';
 import 'package:nabungskuy/components/rgbPicker.dart';
 import 'package:nabungskuy/page/home.dart';
 import 'package:flutter/services.dart';
+import 'package:nabungskuy/page/kategoriPage/kategoriList.dart';
+import 'package:nabungskuy/page/tabunganPage/tabunganForm.dart';
+import 'package:nabungskuy/page/tabunganPage/tabunganList.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,21 +19,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Home',
-      home: Home(),
-    );
-  }
-}
-
-class Home extends StatefulWidget {
-  @override
-  _HomeState createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: ColorsPicker(),
+      home: HomePage(),
+      initialRoute: '/',
+      routes: {
+        '/kategorilist':(context)=>KategoriList(),
+        '/tabunganlist':(context)=>TabunganList(),
+        '/tabunganform':(context)=>TabunganForm()
+      },
     );
   }
 }
