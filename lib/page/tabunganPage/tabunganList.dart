@@ -34,19 +34,19 @@ class _TabunganListState extends State<TabunganList> {
                       judul: 'uang Pendidikan',
                       deskripsi: 'Uang kuliah bulan februari',
                       nominal: 50000,
-                      colors: Colors.red,
+                      backgroundcolor: Colors.red,
                     ),
                     CardItems(
                       judul: 'uang Pendidikan',
                       deskripsi: 'Uang kuliah bulan februari',
                       nominal: 50000,
-                      colors: Colors.blue,
+                      backgroundcolor: Colors.blue,
                     ),
                     CardItems(
                       judul: 'uang Pendidikan',
                       deskripsi: 'Uang kuliah bulan februari',
                       nominal: 50000,
-                      colors: Colors.orange,
+                      backgroundcolor: Colors.orange,
                     )
                   ],
                 ),

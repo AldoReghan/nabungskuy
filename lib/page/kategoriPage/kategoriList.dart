@@ -35,19 +35,19 @@ class _KategoriListState extends State<KategoriList> {
                 judul: 'Uang Pendidikan',
                 deskripsi: '',
                 nominal: null,
-                colors: Colors.red,
+                backgroundcolor: Colors.red,
               ),
               CardItems(
                 judul: 'Uang Darurat',
                 deskripsi: '',
                 nominal: null,
-                colors: Colors.blue,
+                backgroundcolor: Colors.blue,
               ),
               CardItems(
                 judul: 'Uang Harian',
                 deskripsi: '',
                 nominal: null,
-                colors: Colors.orange,
+                backgroundcolor: Colors.orange,
               )
             ],
           ),

@@ -4,17 +4,23 @@ class CardItems extends StatelessWidget {
   final String judul;
   final String deskripsi;
   final int nominal;
-  final colors;
+  final backgroundcolor;
+  final textcolor;
 
   const CardItems(
-      {Key key, this.judul, this.deskripsi, this.nominal, this.colors})
+      {Key key,
+      this.judul,
+      this.deskripsi,
+      this.nominal,
+      this.backgroundcolor,
+      this.textcolor})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
         child: Card(
-      color: colors,
+      color: backgroundcolor,
       elevation: 3.5,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -30,22 +36,26 @@ class CardItems extends StatelessWidget {
                       child: Text(
                     judul,
                     style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
+                        color: textcolor, fontWeight: FontWeight.bold),
                   )),
-                  deskripsi == null || nominal == null ? Container() : Expanded(
-                      child: Text(
-                    deskripsi,
-                    overflow: TextOverflow.ellipsis,
-                    softWrap: true,
-                    style: TextStyle(color: Colors.white),
-                  )),
+                  deskripsi == null || nominal == null
+                      ? Container()
+                      : Expanded(
+                          child: Text(
+                          deskripsi,
+                          overflow: TextOverflow.ellipsis,
+                          softWrap: true,
+                          style: TextStyle(color: textcolor),
+                        )),
                 ],
               ),
             ),
             Spacer(),
-            deskripsi == null || nominal == null ? Container() : Text('Rp. ' + nominal.toString(),
-                style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold))
+            deskripsi == null || nominal == null
+                ? Container()
+                : Text('Rp. ' + nominal.toString(),
+                    style: TextStyle(
+                        color: textcolor, fontWeight: FontWeight.bold))
           ],
         ),
       ),

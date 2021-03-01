@@ -36,6 +36,12 @@ class _HomePageState extends State<HomePage>{
       appBar: AppBar(
         elevation: 0.0,
         title: Text('Welcome Aldo'),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(Icons.settings),
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -55,7 +61,7 @@ class _HomePageState extends State<HomePage>{
                       style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
-                          fontSize: 20),
+                          fontSize: 16),
                     ),
                     Spacer(),
                     GestureDetector(
@@ -93,6 +99,38 @@ class _HomePageState extends State<HomePage>{
               ),
             ),
             Padding(
+              padding:
+                  const EdgeInsets.only(top: 18.0, left: 18.0, right: 18.0),
+              child: Container(
+                child: Row(
+                  children: [
+                    Text(
+                      "Sort By",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16),
+                    ),
+                    Spacer(),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => ShowAll()));
+                      },
+                      child: Text(
+                        "Show All",
+                        style: TextStyle(
+                            color: Colors.blue,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(height: 10,),
+            Padding(
               padding: const EdgeInsets.only(left: 8.0, right: 8.0),
               child: Container(
                 height: MediaQuery.of(context).size.height / 2,
@@ -102,19 +140,22 @@ class _HomePageState extends State<HomePage>{
                       judul: 'uang Pendidikan',
                       deskripsi: 'Uang kuliah bulan februari',
                       nominal: 50000,
-                      colors: Colors.red,
+                      backgroundcolor: Colors.red,
+                      textcolor: Colors.white,
                     ),
                     CardItems(
                       judul: 'uang Pendidikan',
                       deskripsi: 'Uang kuliah bulan februari',
                       nominal: 50000,
-                      colors: Colors.blue,
+                      backgroundcolor: Colors.blue,
+                      textcolor: Colors.white,
                     ),
                     CardItems(
                       judul: 'uang Pendidikan',
                       deskripsi: 'Uang kuliah bulan februari',
                       nominal: 50000,
-                      colors: Colors.orange,
+                      backgroundcolor: Colors.orange,
+                      textcolor: Colors.white,
                     )
                   ],
                 ),
