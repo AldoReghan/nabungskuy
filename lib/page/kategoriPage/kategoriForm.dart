@@ -3,6 +3,8 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:nabungskuy/components/cardItems.dart';
+import 'package:nabungskuy/db/dbprovider.dart';
+import 'package:nabungskuy/model/kategoriModel.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -36,10 +38,28 @@ class _KategoriFormState extends State<KategoriForm> {
   void changeTextColors(List<Color> colors) =>
       setState(() => currentTextColors = colors);
 
+  void main() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    NabungSKuyProvider nabungSKuyProvider = NabungSKuyProvider();
+
+    final kategoriItem = KategoriModel(
+        title: 'kategori', backgroundColor: 'yeellow', textColor: 'red');
+
+    await nabungSKuyProvider.addKategori(kategoriItem);
+  }
+
   @override
   Widget build(BuildContext context) {
-    String colorString = currentColor.toString();
-    String valueString = colorString.split('(0x')[1].split(')')[0];
+    String colorBackgroundString = currentColor.toString();
+    String valueBackgroundString =
+        colorBackgroundString.split('(0x')[1].split(')')[0];
+
+    String colorTextString = currentTextColor.toString();
+    String valueTextColorString = colorTextString.split('(0x')[1].split(')')[0];
+
+    setState(() {
+      valueBackgroundString = currentColor.toString();
+    });
 
     return Scaffold(
       appBar: AppBar(

@@ -7,6 +7,7 @@ INJECTED from /home/aldo/Documents/FlutterProject/nabungskuy/android/app/src/mai
 MERGED from /home/aldo/Documents/FlutterProject/nabungskuy/android/app/src/main/AndroidManifest.xml:1:1-47:12
 MERGED from [:sqflite] /home/aldo/Documents/FlutterProject/nabungskuy/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:flutter_keyboard_visibility] /home/aldo/Documents/FlutterProject/nabungskuy/build/flutter_keyboard_visibility/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:path_provider] /home/aldo/Documents/FlutterProject/nabungskuy/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.fragment:fragment:1.1.0] /home/aldo/.gradle/caches/transforms-2/files-2.1/c4f1ba644f7fb2a4127efbe45e461ebb/fragment-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] /home/aldo/.gradle/caches/transforms-2/files-2.1/af36f58cd0e158191b16f152cd9384fa/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.loader:loader:1.0.0] /home/aldo/.gradle/caches/transforms-2/files-2.1/6584f13befaca8ea228d4715e2dc3ad7/loader-1.0.0/AndroidManifest.xml:17:1-22:12
@@ -101,6 +102,8 @@ MERGED from [:sqflite] /home/aldo/Documents/FlutterProject/nabungskuy/build/sqfl
 MERGED from [:sqflite] /home/aldo/Documents/FlutterProject/nabungskuy/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:flutter_keyboard_visibility] /home/aldo/Documents/FlutterProject/nabungskuy/build/flutter_keyboard_visibility/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:flutter_keyboard_visibility] /home/aldo/Documents/FlutterProject/nabungskuy/build/flutter_keyboard_visibility/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:path_provider] /home/aldo/Documents/FlutterProject/nabungskuy/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:path_provider] /home/aldo/Documents/FlutterProject/nabungskuy/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [androidx.fragment:fragment:1.1.0] /home/aldo/.gradle/caches/transforms-2/files-2.1/c4f1ba644f7fb2a4127efbe45e461ebb/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment:1.1.0] /home/aldo/.gradle/caches/transforms-2/files-2.1/c4f1ba644f7fb2a4127efbe45e461ebb/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager:viewpager:1.0.0] /home/aldo/.gradle/caches/transforms-2/files-2.1/af36f58cd0e158191b16f152cd9384fa/viewpager-1.0.0/AndroidManifest.xml:20:5-44

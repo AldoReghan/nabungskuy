@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nabungskuy/components/rgbPicker.dart';
 import 'package:nabungskuy/page/home.dart';
 import 'package:flutter/services.dart';
 import 'package:nabungskuy/page/kategoriPage/kategoriList.dart';
