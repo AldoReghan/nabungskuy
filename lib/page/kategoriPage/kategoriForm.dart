@@ -38,16 +38,6 @@ class _KategoriFormState extends State<KategoriForm> {
   void changeTextColors(List<Color> colors) =>
       setState(() => currentTextColors = colors);
 
-  void main() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    NabungSKuyProvider nabungSKuyProvider = NabungSKuyProvider();
-
-    final kategoriItem = KategoriModel(
-        title: 'kategori', backgroundColor: 'yeellow', textColor: 'red');
-
-    await nabungSKuyProvider.addKategori(kategoriItem);
-  }
-
   @override
   Widget build(BuildContext context) {
     String colorBackgroundString = currentColor.toString();
