@@ -64,7 +64,7 @@ class _KategoriListState extends State<KategoriList> {
                           deskripsi: '',
                           nominal: null,
                           backgroundcolor: Color(int.parse(item.backgroundColor)),
-                          textcolor: Color(0xffb74094),
+                          textcolor: Color(int.parse(item.textColor)),
                         ),
                       );
                     },
