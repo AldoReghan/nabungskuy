@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:nabungskuy/components/cardItems.dart';
+import 'package:nabungskuy/db/dbprovider.dart';
+import 'package:nabungskuy/db/kategoriCRUD.dart';
+import 'package:nabungskuy/model/kategoriModel.dart';
 import 'package:nabungskuy/page/kategoriPage/kategoriForm.dart';
+import 'dart:math' as math;
 
 class MyApp extends StatelessWidget {
   @override
@@ -18,6 +22,19 @@ class KategoriList extends StatefulWidget {
 }
 
 class _KategoriListState extends State<KategoriList> {
+  Future future = NabungskuyDB.db.getKategoriList();
+
+  List<KategoriModel> testKategori = [
+    KategoriModel(
+        title: 'uang bulanan', backgroundColor: '0xffffff', textColor: '0xffb74094')
+  ];
+
+  Future<void> _updateData() async {
+    setState(() {
+      future = NabungskuyDB.db.getKategoriList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,38 +42,48 @@ class _KategoriListState extends State<KategoriList> {
         elevation: 0.0,
         title: Text('Kategori List'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(top:8, left: 8.0, right: 8.0),
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          child: ListView(
-            children: [
-              CardItems(
-                judul: 'Uang Pendidikan',
-                deskripsi: '',
-                nominal: null,
-                backgroundcolor: Colors.red,
-              ),
-              CardItems(
-                judul: 'Uang Darurat',
-                deskripsi: '',
-                nominal: null,
-                backgroundcolor: Colors.blue,
-              ),
-              CardItems(
-                judul: 'Uang Harian',
-                deskripsi: '',
-                nominal: null,
-                backgroundcolor: Colors.orange,
-              )
-            ],
+      body: Container(
+            height:550,
+            child: FutureBuilder<List<KategoriModel>>(
+              future: future,
+              builder: (BuildContext context,
+                  AsyncSnapshot<List<KategoriModel>> snapshot) {
+                if (snapshot.hasData) {
+                  return ListView.builder(
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      KategoriModel item = snapshot.data[index];
+                      return Dismissible(
+                        key: UniqueKey(),
+                        background: Container(color: Colors.red),
+                        onDismissed: (direction) {
+                          NabungskuyDB.db.delete(item.idkategori);
+                        },
+                        child: CardItems(
+                          judul: item.title,
+                          deskripsi: '',
+                          nominal: null,
+                          backgroundcolor: Color(int.parse(item.backgroundColor)),
+                          textcolor: Color(0xffb74094),
+                        ),
+                      );
+                    },
+                  );
+                } else {
+                  return Center(child: CircularProgressIndicator());
+                }
+              },
+            ),
           ),
-        ),
-      ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
+        onPressed: () async {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => KategoriForm()));
+              context, MaterialPageRoute(builder: (context) => KategoriForm(reload: _updateData,)));
+          // KategoriModel rnd = testKategori[math.Random().nextInt(testKategori.length)];
+          // await NabungskuyDB.db.insert(rnd);
+          // setState(() {
+          //   _updateData();
+          // });
         },
         child: Icon(Icons.add),
       ),

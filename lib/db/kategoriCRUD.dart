@@ -3,29 +3,33 @@ import 'package:nabungskuy/model/kategoriModel.dart';
 import 'dbprovider.dart';
 
 class KategoriCrud {
-  NabungskuyDB nabungskuyDB = NabungskuyDB();
+  NabungskuyDB nabungskuyDB;
 
-  Future<int> insert(KategoriModel kategoriModel) async {
-    Database db = await nabungskuyDB.initDb();
+  insert(KategoriModel kategoriModel) async {
+    Database db = await nabungskuyDB.database;
     int count = await db.insert('kategori', kategoriModel.toMap());
     return count;
   }
 
-  Future<int> update(KategoriModel kategoriModel) async {
-    Database db = await nabungskuyDB.initDb();
+  update(KategoriModel kategoriModel) async {
+    Database db = await nabungskuyDB.initDB();
     int count = await db.update('kategori', kategoriModel.toMap(),
         where: 'idkategori=?', whereArgs: [kategoriModel.idkategori]);
     return count;
   }
 
-  Future<int> delete(KategoriModel kategoriModel) async {
-    Database db = await nabungskuyDB.initDb();
+  delete(KategoriModel kategoriModel) async {
+    Database db = await nabungskuyDB.database;
     int count = await db.delete('kategori',
         where: 'idkategori=?', whereArgs: [kategoriModel.idkategori]);
     return count;
   }
 
-  Future<List<KategoriModel>> getKategoriList() async{
-    Database db= await nabungskuyDB.initDb();
+  Future<List<KategoriModel>> getKategoriList() async {
+    final db = await nabungskuyDB.database;
+    var res = await db.query("kategori");
+    List<KategoriModel> list =
+        res.isNotEmpty ? res.map((c) => KategoriModel.fromMap(c)).toList() : [];
+    return list;
   }
 }
