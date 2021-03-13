@@ -1,4 +1,4 @@
-#Sat Mar 13 05:27:02 WIB 2021
+#Sat Mar 13 22:36:17 WIB 2021
 base.0=/home/aldo/Documents/FlutterProject/nabungskuy/build/app/intermediates/dex/debug/mergeDexDebug/out/classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

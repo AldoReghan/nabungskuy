@@ -4,8 +4,7 @@ import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'dart:async';
 
-class NabungskuyDB{
-
+class NabungskuyDB {
   NabungskuyDB._();
 
   static final NabungskuyDB db = NabungskuyDB._();
@@ -34,30 +33,34 @@ class NabungskuyDB{
         textColor TEXT
       )
     ''');
+    await db.execute('''
+      CREATE TABLE pemasukan (
+        idpemasukan INTEGER PRIMARY KEY AUTOINCREMENT,
+        idkategori INTEGER,
+        title TEXT,
+        deskripsi TEXT,
+        backgroundColor TEXT,
+        textColor TEXT
+      )
+    ''');
   }
 
-  insert(KategoriModel kategoriModel) async {
+  insertKategori(KategoriModel kategoriModel) async {
     Database db = await database;
     int count = await db.insert('kategori', kategoriModel.toMap());
     return count;
   }
 
-  update(KategoriModel kategoriModel) async {
+  updateKategori(KategoriModel kategoriModel) async {
     Database db = await database;
     int count = await db.update('kategori', kategoriModel.toMap(),
         where: 'idkategori=?', whereArgs: [kategoriModel.idkategori]);
     return count;
   }
 
-  delete(int id) async {
+  deleteKategori(int id) async {
     Database db = await database;
-    return await db.delete('kategori',
-        where: 'idkategori=?', whereArgs: [id]);
-  }
-
-  deleteClient(int id) async {
-    final db = await database;
-    return db.delete("Client", where: "id = ?", whereArgs: [id]);
+    return await db.delete('kategori', where: 'idkategori=?', whereArgs: [id]);
   }
 
   Future<List<KategoriModel>> getKategoriList() async {
@@ -67,5 +70,4 @@ class NabungskuyDB{
         res.isNotEmpty ? res.map((c) => KategoriModel.fromMap(c)).toList() : [];
     return list;
   }
-
 }

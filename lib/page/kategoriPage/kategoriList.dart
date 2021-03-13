@@ -23,7 +23,6 @@ class KategoriList extends StatefulWidget {
 
 class _KategoriListState extends State<KategoriList> {
   Future future = NabungskuyDB.db.getKategoriList();
-
   List<KategoriModel> testKategori = [
     KategoriModel(
         title: 'uang bulanan', backgroundColor: '0xffffff', textColor: '0xffb74094')
@@ -57,7 +56,7 @@ class _KategoriListState extends State<KategoriList> {
                         key: UniqueKey(),
                         background: Container(color: Colors.red),
                         onDismissed: (direction) {
-                          NabungskuyDB.db.delete(item.idkategori);
+                          NabungskuyDB.db.deleteKategori(item.idkategori);
                         },
                         child: CardItems(
                           judul: item.title,
@@ -79,11 +78,6 @@ class _KategoriListState extends State<KategoriList> {
         onPressed: () async {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => KategoriForm(reload: _updateData,)));
-          // KategoriModel rnd = testKategori[math.Random().nextInt(testKategori.length)];
-          // await NabungskuyDB.db.insert(rnd);
-          // setState(() {
-          //   _updateData();
-          // });
         },
         child: Icon(Icons.add),
       ),

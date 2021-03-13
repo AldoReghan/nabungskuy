@@ -82,7 +82,7 @@ class _KategoriFormState extends State<KategoriForm> {
         )..show(context);
       } else {
         print(kategoriList.title);
-        await NabungskuyDB.db.insert(kategoriList);
+        await NabungskuyDB.db.insertKategori(kategoriList);
         setState(() {
           widget.reload();
           Navigator.pop(context);
