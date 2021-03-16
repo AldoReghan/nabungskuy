@@ -20,7 +20,10 @@ class TabunganForm extends StatefulWidget {
 }
 
 class _TabunganFormState extends State<TabunganForm> {
+
+  //setup dropdown list from sqlite
   List<DropdownMenuItem<String>> list;
+  String _valKategori;
 
   checkPress() {
     list = [];
@@ -42,15 +45,13 @@ class _TabunganFormState extends State<TabunganForm> {
       child: Text(map['title']),
     );
   }
+  //end of setup dropdowwnlist
 
   @override
   void initState() {
     super.initState();
     checkPress();
   }
-
-  // List _myFriends = ["uang a", "uang b", "uang c"];
-  String _valKategori;
 
   @override
   Widget build(BuildContext context) {
