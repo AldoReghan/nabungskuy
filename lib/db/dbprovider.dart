@@ -40,7 +40,23 @@ class NabungskuyDB {
         title TEXT,
         deskripsi TEXT,
         backgroundColor TEXT,
-        textColor TEXT
+        textColor TEXT,
+        
+        FOREIGN KEY (idkategori) REFERENCES kategori(idkategori)
+      )
+    ''');
+    await db.execute('''
+      CREATE TABLE pengeluaran (
+        idpengeluaran INTEGER PRIMARY KEY AUTOINCREMENT,
+        idpemasukan INTEGER,
+        idkategori INTEGER,
+        title TEXT,
+        deskripsi TEXT,
+        backgroundColor TEXT,
+        textColor TEXT,
+
+        FOREIGN KEY (idkategori) REFERENCES kategori(idkategori),
+        FOREIGN KEY (idpemasukan) REFERENCES pemasukan(idpemasukan)
       )
     ''');
   }
@@ -69,5 +85,10 @@ class NabungskuyDB {
     List<KategoriModel> list =
         res.isNotEmpty ? res.map((c) => KategoriModel.fromMap(c)).toList() : [];
     return list;
+  }
+
+  Future<List<Map<String, dynamic>>> getData() async {
+    Database db = await database;
+    return await db.rawQuery('select * from kategori');
   }
 }

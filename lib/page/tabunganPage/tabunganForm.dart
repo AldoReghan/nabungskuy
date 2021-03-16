@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:nabungskuy/db/dbprovider.dart';
+import 'package:nabungskuy/model/kategoriModel.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -16,15 +20,37 @@ class TabunganForm extends StatefulWidget {
 }
 
 class _TabunganFormState extends State<TabunganForm> {
-  String _valFriends;
-  List _myFriends = [
-    "Uang tabungan",
-    "Uang darurat",
-    "Uang kuliah",
-    "Uang harian dan ngops",
-  ];
+  List<DropdownMenuItem<String>> list;
 
-  String dropdownValue;
+  checkPress() {
+    list = [];
+    NabungskuyDB.db.getData();
+    NabungskuyDB.db.getData().then((listmap) {
+      listmap.map((map) {
+        return getDropdownWidget(map);
+      }).forEach((dropdownitem) {
+        setState(() {
+          list.add(dropdownitem);
+        });
+      });
+    });
+  }
+
+  DropdownMenuItem<String> getDropdownWidget(Map<String, dynamic> map) {
+    return DropdownMenuItem<String>(
+      value: map['title'],
+      child: Text(map['title']),
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    checkPress();
+  }
+
+  // List _myFriends = ["uang a", "uang b", "uang c"];
+  String _valKategori;
 
   @override
   Widget build(BuildContext context) {
@@ -78,16 +104,11 @@ class _TabunganFormState extends State<TabunganForm> {
                         hint: Text("Pilih Kategori"),
                         isExpanded: true,
                         underline: SizedBox(),
-                        value: _valFriends,
-                        items: _myFriends.map((value) {
-                          return DropdownMenuItem(
-                            child: Text(value),
-                            value: value,
-                          );
-                        }).toList(),
+                        value: _valKategori,
+                        items: list,
                         onChanged: (value) {
                           setState(() {
-                            _valFriends = value;
+                            _valKategori = value;
                           });
                         },
                       ),
@@ -120,25 +141,32 @@ class _TabunganFormState extends State<TabunganForm> {
             SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Container(
-                height: 50,
-                decoration: BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.circular(10)),
-                child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Submit',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18),
-                      ),
-                      SizedBox(width: 5,),
-                      Icon(Icons.send, color: Colors.white),
-                    ],
+              child: GestureDetector(
+                onTap: () {
+                  checkPress();
+                },
+                child: Container(
+                  height: 50,
+                  decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Submit',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Icon(Icons.send, color: Colors.white),
+                      ],
+                    ),
                   ),
                 ),
               ),
