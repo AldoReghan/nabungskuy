@@ -1,4 +1,5 @@
 import 'package:nabungskuy/model/kategoriModel.dart';
+import 'package:nabungskuy/model/pemasukanModel.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
@@ -38,9 +39,8 @@ class NabungskuyDB {
         idpemasukan INTEGER PRIMARY KEY AUTOINCREMENT,
         idkategori INTEGER,
         title TEXT,
+        nominal TEXT,
         deskripsi TEXT,
-        backgroundColor TEXT,
-        textColor TEXT,
         
         FOREIGN KEY (idkategori) REFERENCES kategori(idkategori)
       )
@@ -51,9 +51,8 @@ class NabungskuyDB {
         idpemasukan INTEGER,
         idkategori INTEGER,
         title TEXT,
+        nominal TEXT,
         deskripsi TEXT,
-        backgroundColor TEXT,
-        textColor TEXT,
 
         FOREIGN KEY (idkategori) REFERENCES kategori(idkategori),
         FOREIGN KEY (idpemasukan) REFERENCES pemasukan(idpemasukan)
@@ -90,5 +89,11 @@ class NabungskuyDB {
   Future<List<Map<String, dynamic>>> getData() async {
     Database db = await database;
     return await db.rawQuery('select * from kategori');
+  }
+
+  insertPemasukan(PemasukanModel pemasukanModel) async {
+    Database db = await database;
+    int count = await db.insert('pemasukan', pemasukanModel.toMap());
+    return count;
   }
 }
