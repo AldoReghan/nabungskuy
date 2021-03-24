@@ -58,7 +58,10 @@ class _KategoriListState extends State<KategoriList> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => KategoriFormEdit(kategori: item,)));
+                              builder: (context) => KategoriFormEdit(
+                                    kategori: item,
+                                    reload: _updateData,
+                                  )));
                     },
                     child: Dismissible(
                       key: UniqueKey(),

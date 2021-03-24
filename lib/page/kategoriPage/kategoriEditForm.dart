@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:nabungskuy/components/cardItems.dart';
+import 'package:nabungskuy/db/dbprovider.dart';
 import 'package:nabungskuy/model/kategoriModel.dart';
 
 class MyApp extends StatelessWidget {
@@ -15,15 +16,16 @@ class MyApp extends StatelessWidget {
 
 class KategoriFormEdit extends StatefulWidget {
   final KategoriModel kategori;
+  final VoidCallback reload;
 
-  const KategoriFormEdit({Key key, this.kategori}) : super(key: key);
+  const KategoriFormEdit({Key key, this.kategori, this.reload})
+      : super(key: key);
 
   @override
   _KategoriFormEditState createState() => _KategoriFormEditState();
 }
 
 class _KategoriFormEditState extends State<KategoriFormEdit> {
-  
   bool lightTheme = true;
 
   Color currentBackgroundColor;
@@ -51,7 +53,7 @@ class _KategoriFormEditState extends State<KategoriFormEdit> {
       setState(() => currentTextColors = colors);
 
   @override
-  void initState() { 
+  void initState() {
     super.initState();
     colorItem();
   }
@@ -73,8 +75,19 @@ class _KategoriFormEditState extends State<KategoriFormEdit> {
     TextEditingController titleController =
         new TextEditingController(text: widget.kategori.title);
 
-    formExecute(){
+    formExecute() {
+      final kategoriList = KategoriModel(
+        idkategori: widget.kategori.idkategori,
+        title: titleController.text,
+        backgroundColor: valueBackgroundString.split('(')[1].split(')')[0],
+        textColor: valueTextColorString.split('(')[1].split(')')[0],
+      );
+      NabungskuyDB.db.updateKategori(kategoriList);
 
+      setState(() {
+        widget.reload();
+        Navigator.pop(context);
+      });
     }
 
     return Scaffold(
