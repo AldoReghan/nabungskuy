@@ -90,10 +90,18 @@ class NabungskuyDB {
     Database db = await database;
     return await db.rawQuery('select * from kategori');
   }
+  //end of kategori
 
+  //pemasukan
   insertPemasukan(PemasukanModel pemasukanModel) async {
     Database db = await database;
     int count = await db.insert('pemasukan', pemasukanModel.toMap());
     return count;
+  }
+
+  Future<List<Map<String, dynamic>>> selectPemasukan() async {
+    Database db = await database;
+    return await db.rawQuery(
+        'SELECT * FROM pemasukan INNER JOIN kategori ON pemasukan.idkategori = kategori.idkategori');
   }
 }

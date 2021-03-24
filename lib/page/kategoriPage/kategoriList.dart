@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:nabungskuy/components/cardItems.dart';
 import 'package:nabungskuy/db/dbprovider.dart';
-import 'package:nabungskuy/db/kategoriCRUD.dart';
 import 'package:nabungskuy/model/kategoriModel.dart';
+import 'package:nabungskuy/page/kategoriPage/kategoriEditForm.dart';
 import 'package:nabungskuy/page/kategoriPage/kategoriForm.dart';
-import 'dart:math' as math;
 
 class MyApp extends StatelessWidget {
   @override
@@ -25,7 +24,9 @@ class _KategoriListState extends State<KategoriList> {
   Future future = NabungskuyDB.db.getKategoriList();
   List<KategoriModel> testKategori = [
     KategoriModel(
-        title: 'uang bulanan', backgroundColor: '0xffffff', textColor: '0xffb74094')
+        title: 'uang bulanan',
+        backgroundColor: '0xffffff',
+        textColor: '0xffb74094')
   ];
 
   Future<void> _updateData() async {
@@ -42,42 +43,54 @@ class _KategoriListState extends State<KategoriList> {
         title: Text('Kategori List'),
       ),
       body: Container(
-            height:550,
-            child: FutureBuilder<List<KategoriModel>>(
-              future: future,
-              builder: (BuildContext context,
-                  AsyncSnapshot<List<KategoriModel>> snapshot) {
-                if (snapshot.hasData) {
-                  return ListView.builder(
-                    itemCount: snapshot.data.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      KategoriModel item = snapshot.data[index];
-                      return Dismissible(
-                        key: UniqueKey(),
-                        background: Container(color: Colors.red),
-                        onDismissed: (direction) {
-                          NabungskuyDB.db.deleteKategori(item.idkategori);
-                        },
-                        child: CardItems(
-                          judul: item.title,
-                          deskripsi: '',
-                          nominal: null,
-                          backgroundcolor: Color(int.parse(item.backgroundColor)),
-                          textcolor: Color(int.parse(item.textColor)),
-                        ),
-                      );
+        height: 550,
+        child: FutureBuilder<List<KategoriModel>>(
+          future: future,
+          builder: (BuildContext context,
+              AsyncSnapshot<List<KategoriModel>> snapshot) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                itemCount: snapshot.data.length,
+                itemBuilder: (BuildContext context, int index) {
+                  KategoriModel item = snapshot.data[index];
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => KategoriFormEdit(kategori: item,)));
                     },
+                    child: Dismissible(
+                      key: UniqueKey(),
+                      background: Container(color: Colors.red),
+                      onDismissed: (direction) {
+                        NabungskuyDB.db.deleteKategori(item.idkategori);
+                      },
+                      child: CardItems(
+                        judul: item.title,
+                        deskripsi: '',
+                        nominal: null,
+                        backgroundcolor: Color(int.parse(item.backgroundColor)),
+                        textcolor: Color(int.parse(item.textColor)),
+                      ),
+                    ),
                   );
-                } else {
-                  return Center(child: CircularProgressIndicator());
-                }
-              },
-            ),
-          ),
+                },
+              );
+            } else {
+              return Center(child: CircularProgressIndicator());
+            }
+          },
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => KategoriForm(reload: _updateData,)));
+              context,
+              MaterialPageRoute(
+                  builder: (context) => KategoriForm(
+                        reload: _updateData,
+                      )));
         },
         child: Icon(Icons.add),
       ),

@@ -34,7 +34,6 @@ class _TabunganFormState extends State<TabunganForm> {
 
   checkPress() {
     list = [];
-    listAll = [];
     NabungskuyDB.db.getData();
     NabungskuyDB.db.getData().then((listmap) {
       listmap.map((map) {
@@ -42,7 +41,6 @@ class _TabunganFormState extends State<TabunganForm> {
       }).forEach((dropdownitem) {
         setState(() {
           list.add(dropdownitem);
-          listAll.add(dropdownitem);
         });
       });
     });
